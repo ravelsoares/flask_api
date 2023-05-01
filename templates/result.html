@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exemplo de tabela</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      // Função para exibir o JSON como uma tabela
+      function displayTable(data) {
+        var table = '<table>';
+        // Cria o cabeçalho da tabela
+        table += '<tr>';
+        $.each(data[0], function(key, value) {
+          table += '<th>' + key + '</th>';
+        });
+        table += '</tr>';
+        // Adiciona os dados à tabela
+        $.each(data, function(index, row) {
+          table += '<tr>';
+          $.each(row, function(key, value) {
+            table += '<td>' + value + '</td>';
+          });
+          table += '</tr>';
+        });
+        table += '</table>';
+        // Exibe a tabela na página
+        $('#table-container').html(table);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Exemplo de tabela</h1>
+    <div id="table-container"></div>
+    {% if data %}
+    <script>
+      // Exibe a tabela na página quando ela for carregada
+      $(document).ready(function() {
+        var data = {{ data | tojson }};
+        displayTable(data);
+      });
+    </script>
+    {% endif %}
+  </body>
+</html>
+
