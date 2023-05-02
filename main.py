@@ -3,7 +3,6 @@ import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
 
 app = Flask(__name__)
-
 @app.route('/')
 def login():
     return render_template('login.html')
